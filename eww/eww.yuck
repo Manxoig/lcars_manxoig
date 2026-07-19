@@ -1,0 +1,20 @@
+(defwindow lcars-bg
+  :monitor 0
+  :stacking "bottom"           ;; IMPORTANTE: Esto lo mantiene como wallpaper
+  :geometry (geometry :x "0%"
+                      :y "0%"
+                      :width "100%"
+                      :height "100%"
+                      :anchor "top left")
+  :focusable false
+  :wm-ignore true
+  (lcars-layout))
+
+(defwidget lcars-layout []
+  (box :class "main-container" :orientation "v" :space-evenly false
+    (box :class "top-bar" :halign "start" "SYSTEM STATUS")
+    (box :class "content"
+         ;; Aquí irán tus widgets de volumen y datos
+         (button :onclick "scripts/volume_control.sh up" "VOL UP")
+    )
+  ))
