@@ -1,214 +1,226 @@
-// Paleta de colores LCARS
-$lcars-orange: #ff9900;
-$lcars-yellow: #ffcc00;
-$lcars-blue: #99ccff;
-$lcars-pink: #cc6699;
-$lcars-purple: #9999cc;
-$lcars-dark-bg: #000000;
-$lcars-bar-bg: #111111;
+// =================================================================
+// TEMA BORG TACTICAL - 1080p OPTIMIZADO (Compact Grid & Sleek UI)
+// Ajustado para pantalla 1920x1080, alto contraste y lectura fácil
+// =================================================================
 
-// Tipografía y resets
+// Paleta Borg Tactical
+$borg-green: #00ff66;         // Verde neón Borg principal
+$borg-emerald: #00cc55;       // Verde esmeralda secundario
+$borg-dark-green: #004d20;    // Verde oscuro táctico para bordes
+$borg-mint: #a3ffcf;          // Verde menta claro para texto
+$borg-alert-red: #ff3344;     // Rojo alerta táctico
+$borg-bg-panel: rgba(10, 24, 16, 0.82); // Fondo de panel oscuro mate
+$dark-text: #041209;          // Texto oscuro sobre botones de alto brillo
+
+// Resets y Tipografía
 * {
   all: unset;
-  font-family: "Swiss 911 Ultra Compressed", "Hansen", "Arial Narrow", sans-serif;
+  font-family: "Swiss 911 Ultra Compressed", "Hansen", "JetBrains Mono", "Arial Narrow", sans-serif;
   font-weight: bold;
 }
 
 .lcars-screen {
-  background-color: transparent; // Para que se vea el wallpaper detrás
-  padding: 20px;
-  color: #ffffff;
+  background-color: transparent;
+  padding: 12px;
+  color: #e6fffa;
 }
 
-// Estructura del codo lateral izquierdo
+// Estructura del codo lateral izquierdo (Borg Tactical Arc Compact)
 .lcars-sidebar {
-  min-width: 140px;
-  margin-right: 20px;
+  min-width: 100px;
+  margin-right: 15px;
 }
 
 .lcars-elbow-top {
   background-color: transparent;
-  min-height: 120px;
-  margin-bottom: 10px;
+  min-height: 75px;
+  margin-bottom: 6px;
 }
 
-// El truco para el codo LCARS en CSS:
-// Una caja con bordes redondeados y un fondo de color, y otra caja negra en la esquina interior para simular el recorte curvo.
 .lcars-elbow-corner {
-  background-color: $lcars-orange;
-  min-height: 80px;
-  border-radius: 40px 0 0 40px;
-  margin-bottom: 5px;
+  background-color: $borg-green;
+  min-height: 50px;
+  border-radius: 25px 0 0 25px;
+  margin-bottom: 4px;
 }
 
 .lcars-username-tag {
-  color: $lcars-dark-bg;
-  background-color: $lcars-yellow;
-  font-size: 18px;
-  padding: 2px 10px;
-  border-radius: 10px 0 0 10px;
-  margin-right: 5px;
+  color: $dark-text;
+  background-color: $borg-emerald;
+  font-size: 13px;
+  padding: 2px 8px;
+  border-radius: 8px 0 0 8px;
+  margin-right: 4px;
 }
 
-// Barras verticales de la barra lateral
+// Barras verticales de la barra lateral (Gradación Borg Compacta)
 .lcars-sidebar-bar-orange, .lcars-sidebar-bar-purple, .lcars-sidebar-bar-blue {
-  min-width: 60px;
-  margin-bottom: 8px;
-  min-height: 100px;
+  min-width: 45px;
+  margin-bottom: 6px;
+  min-height: 50px;
 }
 
 .lcars-sidebar-bar-orange {
-  background-color: $lcars-orange;
+  background-color: $borg-green;
 }
 
 .lcars-sidebar-bar-purple {
-  background-color: $lcars-purple;
+  background-color: $borg-emerald;
 }
 
 .lcars-sidebar-bar-blue {
-  background-color: $lcars-blue;
+  background-color: $borg-dark-green;
 }
 
-// Contenedor principal de contenido
+// Contenedor principal
 .lcars-main {
-  margin-left: 10px;
+  margin-left: 8px;
 }
 
 // Barra superior horizontal
 .lcars-top-bar {
-  border-bottom: 4px solid $lcars-orange;
-  padding-bottom: 8px;
-  margin-bottom: 25px;
+  border-bottom: 2px solid $borg-green;
+  padding-bottom: 6px;
+  margin-bottom: 15px;
 }
 
 .lcars-hostname-tag {
-  color: $lcars-orange;
-  font-size: 26px;
+  color: $borg-green;
+  font-size: 18px;
   font-weight: 800;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
 }
 
 .lcars-time-tag {
-  color: $lcars-yellow;
-  font-size: 22px;
+  color: $borg-mint;
+  font-size: 15px;
   letter-spacing: 1px;
 }
 
 // Contenedores del cuerpo central
 .lcars-content-container {
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 .lcars-metrics-panel {
-  margin-right: 40px;
+  margin-right: 20px;
 }
 
-// Filas de métricas
+// Filas de métricas (Dimensiones ajustadas a 1080p)
 .metric-box {
-  margin-bottom: 25px;
-  background-color: rgba(20, 20, 20, 0.6);
-  padding: 10px 15px;
-  border-radius: 6px;
-  border-left: 6px solid $lcars-blue;
+  margin-bottom: 10px;
+  background-color: $borg-bg-panel;
+  padding: 8px 12px;
+  border-radius: 5px;
+  border-left: 4px solid $borg-green;
 }
 
 .metric-label {
-  font-size: 18px;
-  color: $lcars-blue;
-  min-width: 100px;
+  font-size: 13px;
+  color: $borg-mint;
+  min-width: 80px;
+}
+
+.metric-sublabel {
+  font-size: 10px;
+  color: $borg-emerald;
+  font-weight: normal;
+  margin-top: 1px;
 }
 
 .metric-progress-container {
-  margin: 0 20px;
+  margin: 0 12px;
 }
 
-// Barra de progreso (Estilo GTK-CSS)
+// Barra de progreso (GTK-CSS Compacta)
 .metric-progress trough {
-  background-color: #333333;
-  border-radius: 4px;
-  min-height: 15px;
+  background-color: #06140d;
+  border-radius: 3px;
+  min-height: 10px;
 }
 
 .metric-progress progress {
-  border-radius: 4px;
-  min-height: 15px;
+  border-radius: 3px;
+  min-height: 10px;
 }
 
 .cpu-bar progress {
-  background-color: $lcars-orange;
+  background-color: $borg-green;
+}
+
+.cputemp-bar progress {
+  background-color: $borg-mint;
 }
 
 .ram-bar progress {
-  background-color: $lcars-yellow;
+  background-color: $borg-emerald;
 }
 
 .storage-bar progress {
-  background-color: $lcars-purple;
+  background-color: $borg-green;
+}
+
+.gputemp-bar progress {
+  background-color: $borg-emerald;
 }
 
 .volume-bar progress {
-  background-color: $lcars-blue;
+  background-color: $borg-mint;
 }
 
 .metric-value {
-  font-size: 18px;
+  font-size: 13px;
   color: #ffffff;
-  min-width: 60px;
+  min-width: 40px;
 }
 
 // Controles de volumen
 .metric-volume-controls {
-  margin: 0 20px;
+  margin: 0 12px;
 }
 
 .vol-btn {
-  background-color: $lcars-blue;
-  color: $lcars-dark-bg;
-  padding: 2px 10px;
-  border-radius: 4px;
-  font-size: 14px;
-  margin: 0 5px;
-  &:hover {
-    background-color: lighten($lcars-blue, 10%);
-  }
+  background-color: $borg-emerald;
+  color: $dark-text;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 11px;
+  margin: 0 3px;
+  font-weight: 800;
 }
 
 // Panel de botones de acción rápida
 .lcars-actions-panel {
-  min-width: 220px;
+  min-width: 160px;
 }
 
 .action-btn {
-  padding: 12px 20px;
-  border-radius: 20px;
-  font-size: 18px;
-  color: $lcars-dark-bg;
-  margin-bottom: 12px;
+  padding: 8px 14px;
+  border-radius: 14px;
+  font-size: 13px;
+  color: $dark-text;
+  margin-bottom: 8px;
   font-weight: 800;
-  transition: all 0.2s ease;
-  
-  &:hover {
-    opacity: 0.85;
-    font-size: 19px;
-  }
 }
 
 .btn-orange {
-  background-color: $lcars-orange;
+  background-color: $borg-green;
 }
 
 .btn-blue {
-  background-color: $lcars-blue;
+  background-color: $borg-emerald;
 }
 
 .btn-yellow {
-  background-color: $lcars-yellow;
+  background-color: $borg-mint;
 }
 
 .btn-purple {
-  background-color: $lcars-purple;
+  background-color: $borg-dark-green;
+  color: #ffffff;
 }
 
 .btn-red {
-  background-color: $lcars-pink; // Red-alert
+  background-color: $borg-alert-red;
+  color: #ffffff;
 }

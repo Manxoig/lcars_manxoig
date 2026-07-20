@@ -11,7 +11,7 @@ PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 EWW_DIR="$PROJECT_DIR/eww"
 
 # Verificar que los scripts tengan permisos de ejecución
-chmod +x "$EWW_DIR/scripts/stardate.py" "$EWW_DIR/scripts/volume_control.sh" "$EWW_DIR/scripts/open_help.sh" "$PROJECT_DIR/troubleshoot.sh"
+chmod +x "$EWW_DIR/scripts/stardate.py" "$EWW_DIR/scripts/volume_control.sh" "$EWW_DIR/scripts/sensors.py" "$EWW_DIR/scripts/computer_command.sh" "$EWW_DIR/scripts/open_terminal.sh" "$EWW_DIR/scripts/open_help.sh" "$PROJECT_DIR/troubleshoot.sh"
 
 # Crear directorio temporal
 TEMP_DIR=$(mktemp -d -t lcars-eww-test.XXXXXX)

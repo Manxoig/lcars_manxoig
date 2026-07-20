@@ -4,7 +4,10 @@
 (defpoll time :interval "1s" "date '+%H:%M:%S'")
 (defpoll date :interval "1m" "date '+%a, %d %b %Y'")
 (defpoll volume :interval "1s" "scripts/volume_control.sh get")
+(defpoll audiodevice :interval "5s" "scripts/volume_control.sh device")
 (defpoll storage :interval "5m" "df --output=pcent / | tail -n 1 | tr -d ' %'")
+(defpoll cputemp :interval "3s" "scripts/sensors.py cpu")
+(defpoll gputemp :interval "3s" "scripts/sensors.py gpu")
 (defvar confirm-reboot false)
 
 (defwindow lcars-bg
@@ -58,6 +61,15 @@
             (label :text "${round(EWW_CPU.avg, 0)}%" :class "metric-value")
           )
           
+          ;; CPU Temp
+          (box :class "metric-box" :orientation "h" :space-evenly false
+            (label :text "CPU TEMP" :class "metric-label")
+            (box :class "metric-progress-container" :hexpand true
+              (progress :value {cputemp == "" ? 0 : cputemp} :class "metric-progress cputemp-bar")
+            )
+            (label :text "${cputemp == "" ? 0 : cputemp}°C" :class "metric-value")
+          )
+          
           ;; Memory (RAM)
           (box :class "metric-box" :orientation "h" :space-evenly false
             (label :text "MEMORY" :class "metric-label")
@@ -76,9 +88,21 @@
             (label :text "${storage == "" ? 0 : storage}%" :class "metric-value")
           )
           
+          ;; GPU Temp
+          (box :class "metric-box" :orientation "h" :space-evenly false
+            (label :text "GPU TEMP" :class "metric-label")
+            (box :class "metric-progress-container" :hexpand true
+              (progress :value {gputemp == "" ? 0 : gputemp} :class "metric-progress gputemp-bar")
+            )
+            (label :text "${gputemp == "" ? 0 : gputemp}°C" :class "metric-value")
+          )
+          
           ;; Volume Control
           (box :class "metric-box" :orientation "h" :space-evenly false
-            (label :text "VOLUME" :class "metric-label")
+            (box :orientation "v" :space-evenly false :valign "center"
+              (label :text "VOLUME" :class "metric-label" :halign "start")
+              (label :text "${audiodevice == '' ? 'DEFAULT' : audiodevice}" :class "metric-sublabel" :halign "start" :limit-width 18)
+            )
             (box :class "metric-volume-controls" :orientation "h" :space-evenly false :hexpand true
               (button :onclick "scripts/volume_control.sh down" :class "vol-btn" "DEC")
               (box :class "metric-progress-container" :hexpand true
@@ -92,6 +116,8 @@
         
         ;; RIGHT CONTENT: ACTION BUTTONS
         (box :class "lcars-actions-panel" :orientation "v" :space-evenly true
+          (button :onclick "scripts/computer_command.sh &" :class "action-btn btn-orange" "COMPUTER COMMAND")
+          (button :onclick "scripts/open_terminal.sh &" :class "action-btn btn-blue" "OPEN TERMINAL")
           (button :onclick "scripts/open_help.sh &" :class "action-btn btn-yellow" "SYSTEM HELP")
           (button :onclick "scripts/volume_control.sh mute" :class "action-btn btn-orange" "MUTE SYSTEM")
           (button :onclick "plasma-systemmonitor &" :class "action-btn btn-blue" "SYS MONITOR")

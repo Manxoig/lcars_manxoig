@@ -49,9 +49,36 @@ toggle_mute() {
     fi
 }
 
+get_device() {
+    if has_pactl; then
+        local def_sink=$(pactl get-default-sink 2>/dev/null)
+        if [ -n "$def_sink" ]; then
+            local desc=$(pactl list sinks 2>/dev/null | awk -v sink="$def_sink" '
+                $0 ~ "Name: " sink { in_sink=1 }
+                in_sink && $1 ~ "^Description:" {
+                    sub(/^[[:space:]]*Description:[[:space:]]*/, "")
+                    print
+                    exit
+                }
+                $1 == "Name:" && $0 !~ sink { in_sink=0 }
+            ')
+            if [ -n "$desc" ]; then
+                echo "$desc"
+                return
+            fi
+            echo "$def_sink"
+            return
+        fi
+    fi
+    echo "Default Output"
+}
+
 case $1 in
     get)
         get_volume
+        ;;
+    device)
+        get_device
         ;;
     up)
         set_volume_up
@@ -63,7 +90,7 @@ case $1 in
         toggle_mute
         ;;
     *)
-        echo "Uso: $0 {get|up|down|mute}"
+        echo "Uso: $0 {get|device|up|down|mute}"
         exit 1
         ;;
 esac
