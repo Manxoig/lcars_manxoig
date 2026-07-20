@@ -1,20 +1,107 @@
+(defpoll hostname :interval "24h" "hostname")
+(defpoll username :interval "24h" "whoami")
+(defpoll stardate :interval "1m" "scripts/stardate.py")
+(defpoll time :interval "1s" "date '+%H:%M:%S'")
+(defpoll date :interval "1m" "date '+%a, %d %b %Y'")
+(defpoll volume :interval "1s" "scripts/volume_control.sh get")
+(defpoll storage :interval "5m" "df --output=pcent / | tail -n 1 | tr -d ' %'")
+(defvar confirm-reboot false)
+
 (defwindow lcars-bg
-  :monitor 0
-  :stacking "bottom"           ;; IMPORTANTE: Esto lo mantiene como wallpaper
+  :monitor 1
+  :stacking "bottom"
+  :exclusive false
   :geometry (geometry :x "0%"
                       :y "0%"
                       :width "100%"
                       :height "100%"
                       :anchor "top left")
   :focusable false
-  :wm-ignore true
   (lcars-layout))
 
 (defwidget lcars-layout []
-  (box :class "main-container" :orientation "v" :space-evenly false
-    (box :class "top-bar" :halign "start" "SYSTEM STATUS")
-    (box :class "content"
-         ;; Aquí irán tus widgets de volumen y datos
-         (button :onclick "scripts/volume_control.sh up" "VOL UP")
+  (box :class "lcars-screen" :orientation "h" :space-evenly false
+    ;; SIDEBAR (LCARS Elbow & Left Bars)
+    (box :class "lcars-sidebar" :orientation "v" :space-evenly false
+      (box :class "lcars-elbow-top" :orientation "v" :space-evenly false
+        (box :class "lcars-elbow-corner")
+        (box :class "lcars-username-tag" :halign "end" username)
+      )
+      (box :class "lcars-sidebar-bar-orange" :valign "fill")
+      (box :class "lcars-sidebar-bar-purple" :valign "fill")
+      (box :class "lcars-sidebar-bar-blue" :valign "fill")
     )
-  ))
+    
+    ;; MAIN CONTENT AREA
+    (box :class "lcars-main" :orientation "v" :space-evenly false :hexpand true
+      ;; TOP BAR
+      (box :class "lcars-top-bar" :orientation "h" :space-evenly false
+        (box :class "lcars-hostname-tag" :halign "start" :hexpand true
+          (label :text "${hostname} | SYSTEM STATUS")
+        )
+        (box :class "lcars-time-tag" :halign "end" :space-evenly false
+          (label :text "${time} | STARDATE ${stardate} | ${date}" :class "lcars-time-text")
+        )
+      )
+      
+      ;; CENTRAL GRIDS AND CONTENT
+      (box :class "lcars-content-container" :orientation "h" :space-evenly false :vexpand true
+        ;; LEFT CONTENT: SYSTEM METRICS
+        (box :class "lcars-metrics-panel" :orientation "v" :space-evenly false :hexpand true
+          
+          ;; CPU Load
+          (box :class "metric-box" :orientation "h" :space-evenly false
+            (label :text "CPU LOAD" :class "metric-label")
+            (box :class "metric-progress-container" :hexpand true
+              (progress :value {EWW_CPU.avg} :class "metric-progress cpu-bar")
+            )
+            (label :text "${round(EWW_CPU.avg, 0)}%" :class "metric-value")
+          )
+          
+          ;; Memory (RAM)
+          (box :class "metric-box" :orientation "h" :space-evenly false
+            (label :text "MEMORY" :class "metric-label")
+            (box :class "metric-progress-container" :hexpand true
+              (progress :value {round(EWW_RAM.used_mem / EWW_RAM.total_mem * 100, 0)} :class "metric-progress ram-bar")
+            )
+            (label :text "${round(EWW_RAM.used_mem / EWW_RAM.total_mem * 100, 0)}%" :class "metric-value")
+          )
+          
+          ;; Storage
+          (box :class "metric-box" :orientation "h" :space-evenly false
+            (label :text "STORAGE" :class "metric-label")
+            (box :class "metric-progress-container" :hexpand true
+              (progress :value {storage == "" ? 0 : storage} :class "metric-progress storage-bar")
+            )
+            (label :text "${storage == "" ? 0 : storage}%" :class "metric-value")
+          )
+          
+          ;; Volume Control
+          (box :class "metric-box" :orientation "h" :space-evenly false
+            (label :text "VOLUME" :class "metric-label")
+            (box :class "metric-volume-controls" :orientation "h" :space-evenly false :hexpand true
+              (button :onclick "scripts/volume_control.sh down" :class "vol-btn" "DEC")
+              (box :class "metric-progress-container" :hexpand true
+                (progress :value {volume == "" ? 0 : volume} :class "metric-progress volume-bar")
+              )
+              (button :onclick "scripts/volume_control.sh up" :class "vol-btn" "INC")
+            )
+            (label :text "${volume == "" ? 0 : volume}%" :class "metric-value")
+          )
+        )
+        
+        ;; RIGHT CONTENT: ACTION BUTTONS
+        (box :class "lcars-actions-panel" :orientation "v" :space-evenly true
+          (button :onclick "scripts/open_help.sh &" :class "action-btn btn-yellow" "SYSTEM HELP")
+          (button :onclick "scripts/volume_control.sh mute" :class "action-btn btn-orange" "MUTE SYSTEM")
+          (button :onclick "plasma-systemmonitor &" :class "action-btn btn-blue" "SYS MONITOR")
+          (button :onclick "krunner &" :class "action-btn btn-yellow" "RUN APPS")
+          (button :onclick "systemsettings &" :class "action-btn btn-purple" "SYS CONFIG")
+          (button :onclick {confirm-reboot ? "qdbus org.kde.Shutdown /Shutdown logoutAndReboot || systemctl reboot" : "eww update confirm-reboot=true && sleep 3 && eww update confirm-reboot=false &"}
+                  :class {confirm-reboot ? "action-btn btn-red" : "action-btn btn-purple"}
+                  {confirm-reboot ? "CONFIRM REBOOT" : "REBOOT SYSTEM"})
+        )
+      )
+    )
+  )
+)

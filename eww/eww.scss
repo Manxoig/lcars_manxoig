@@ -1,0 +1,214 @@
+// Paleta de colores LCARS
+$lcars-orange: #ff9900;
+$lcars-yellow: #ffcc00;
+$lcars-blue: #99ccff;
+$lcars-pink: #cc6699;
+$lcars-purple: #9999cc;
+$lcars-dark-bg: #000000;
+$lcars-bar-bg: #111111;
+
+// Tipografía y resets
+* {
+  all: unset;
+  font-family: "Swiss 911 Ultra Compressed", "Hansen", "Arial Narrow", sans-serif;
+  font-weight: bold;
+}
+
+.lcars-screen {
+  background-color: transparent; // Para que se vea el wallpaper detrás
+  padding: 20px;
+  color: #ffffff;
+}
+
+// Estructura del codo lateral izquierdo
+.lcars-sidebar {
+  min-width: 140px;
+  margin-right: 20px;
+}
+
+.lcars-elbow-top {
+  background-color: transparent;
+  min-height: 120px;
+  margin-bottom: 10px;
+}
+
+// El truco para el codo LCARS en CSS:
+// Una caja con bordes redondeados y un fondo de color, y otra caja negra en la esquina interior para simular el recorte curvo.
+.lcars-elbow-corner {
+  background-color: $lcars-orange;
+  min-height: 80px;
+  border-radius: 40px 0 0 40px;
+  margin-bottom: 5px;
+}
+
+.lcars-username-tag {
+  color: $lcars-dark-bg;
+  background-color: $lcars-yellow;
+  font-size: 18px;
+  padding: 2px 10px;
+  border-radius: 10px 0 0 10px;
+  margin-right: 5px;
+}
+
+// Barras verticales de la barra lateral
+.lcars-sidebar-bar-orange, .lcars-sidebar-bar-purple, .lcars-sidebar-bar-blue {
+  min-width: 60px;
+  margin-bottom: 8px;
+  min-height: 100px;
+}
+
+.lcars-sidebar-bar-orange {
+  background-color: $lcars-orange;
+}
+
+.lcars-sidebar-bar-purple {
+  background-color: $lcars-purple;
+}
+
+.lcars-sidebar-bar-blue {
+  background-color: $lcars-blue;
+}
+
+// Contenedor principal de contenido
+.lcars-main {
+  margin-left: 10px;
+}
+
+// Barra superior horizontal
+.lcars-top-bar {
+  border-bottom: 4px solid $lcars-orange;
+  padding-bottom: 8px;
+  margin-bottom: 25px;
+}
+
+.lcars-hostname-tag {
+  color: $lcars-orange;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.lcars-time-tag {
+  color: $lcars-yellow;
+  font-size: 22px;
+  letter-spacing: 1px;
+}
+
+// Contenedores del cuerpo central
+.lcars-content-container {
+  margin-top: 10px;
+}
+
+.lcars-metrics-panel {
+  margin-right: 40px;
+}
+
+// Filas de métricas
+.metric-box {
+  margin-bottom: 25px;
+  background-color: rgba(20, 20, 20, 0.6);
+  padding: 10px 15px;
+  border-radius: 6px;
+  border-left: 6px solid $lcars-blue;
+}
+
+.metric-label {
+  font-size: 18px;
+  color: $lcars-blue;
+  min-width: 100px;
+}
+
+.metric-progress-container {
+  margin: 0 20px;
+}
+
+// Barra de progreso (Estilo GTK-CSS)
+.metric-progress trough {
+  background-color: #333333;
+  border-radius: 4px;
+  min-height: 15px;
+}
+
+.metric-progress progress {
+  border-radius: 4px;
+  min-height: 15px;
+}
+
+.cpu-bar progress {
+  background-color: $lcars-orange;
+}
+
+.ram-bar progress {
+  background-color: $lcars-yellow;
+}
+
+.storage-bar progress {
+  background-color: $lcars-purple;
+}
+
+.volume-bar progress {
+  background-color: $lcars-blue;
+}
+
+.metric-value {
+  font-size: 18px;
+  color: #ffffff;
+  min-width: 60px;
+}
+
+// Controles de volumen
+.metric-volume-controls {
+  margin: 0 20px;
+}
+
+.vol-btn {
+  background-color: $lcars-blue;
+  color: $lcars-dark-bg;
+  padding: 2px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  margin: 0 5px;
+  &:hover {
+    background-color: lighten($lcars-blue, 10%);
+  }
+}
+
+// Panel de botones de acción rápida
+.lcars-actions-panel {
+  min-width: 220px;
+}
+
+.action-btn {
+  padding: 12px 20px;
+  border-radius: 20px;
+  font-size: 18px;
+  color: $lcars-dark-bg;
+  margin-bottom: 12px;
+  font-weight: 800;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    opacity: 0.85;
+    font-size: 19px;
+  }
+}
+
+.btn-orange {
+  background-color: $lcars-orange;
+}
+
+.btn-blue {
+  background-color: $lcars-blue;
+}
+
+.btn-yellow {
+  background-color: $lcars-yellow;
+}
+
+.btn-purple {
+  background-color: $lcars-purple;
+}
+
+.btn-red {
+  background-color: $lcars-pink; // Red-alert
+}
