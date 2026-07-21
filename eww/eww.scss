@@ -1,16 +1,17 @@
 // =================================================================
-// TEMA BORG TACTICAL - 1080p OPTIMIZADO (Compact Grid & Sleek UI)
-// Ajustado para pantalla 1920x1080, alto contraste y lectura fácil
+// TEMA STEALTH GLASS (Translucidez Suave & Colores Tenues)
+// Baja opacidad (35-45%), tonos mate suaves para evitar el deslumbrado
 // =================================================================
 
-// Paleta Borg Tactical
-$borg-green: #00ff66;         // Verde neón Borg principal
-$borg-emerald: #00cc55;       // Verde esmeralda secundario
-$borg-dark-green: #004d20;    // Verde oscuro táctico para bordes
-$borg-mint: #a3ffcf;          // Verde menta claro para texto
-$borg-alert-red: #ff3344;     // Rojo alerta táctico
-$borg-bg-panel: rgba(10, 24, 16, 0.82); // Fondo de panel oscuro mate
-$dark-text: #041209;          // Texto oscuro sobre botones de alto brillo
+// Paleta Muteada de Baja Opacidad (Stealth Borg Glass)
+$borg-green: #22c55e;         // Verde esmeralda suave (sin neón estridente)
+$borg-emerald: #16a34a;       // Verde medio sutil
+$borg-dark-green: #14532d;    // Verde profundo mate
+$borg-mint: #bbf7d0;          // Verde menta suave desaturado
+$borg-alert-red: #dc2626;     // Rojo alerta suave
+$borg-bg-panel: rgba(5, 16, 10, 0.40); // Fondo de panel con opacidad reducida (40%)
+$dark-text: #021a0e;          // Texto oscuro sobre botones claros
+$light-text: #f0fdf4;         // Texto blanco/verde muy tenue
 
 // Resets y Tipografía
 * {
@@ -21,206 +22,239 @@ $dark-text: #041209;          // Texto oscuro sobre botones de alto brillo
 
 .lcars-screen {
   background-color: transparent;
-  padding: 12px;
-  color: #e6fffa;
+  padding: 10px;
+  color: $light-text;
 }
 
-// Estructura del codo lateral izquierdo (Borg Tactical Arc Compact)
+.lcars-module {
+  margin: 0 8px;
+}
+
+.lcars-module-left {
+  margin-right: 12px;
+}
+
+.lcars-module-right {
+  margin-left: 12px;
+}
+
+// Estructura del codo lateral izquierdo (Translúcido)
 .lcars-sidebar {
-  min-width: 100px;
-  margin-right: 15px;
+  min-width: 80px;
+  margin-right: 10px;
+}
+
+// Estructura del codo lateral derecho (Translúcido en Espejo)
+.lcars-sidebar-right {
+  min-width: 80px;
+  margin-left: 10px;
 }
 
 .lcars-elbow-top {
   background-color: transparent;
-  min-height: 75px;
-  margin-bottom: 6px;
+  min-height: 65px;
+  margin-bottom: 4px;
 }
 
-.lcars-elbow-corner {
-  background-color: $borg-green;
-  min-height: 50px;
-  border-radius: 25px 0 0 25px;
-  margin-bottom: 4px;
+.lcars-elbow-corner-left {
+  background-color: rgba(34, 197, 94, 0.55);
+  min-height: 45px;
+  border-radius: 22px 0 0 22px;
+  margin-bottom: 3px;
+}
+
+.lcars-elbow-corner-right {
+  background-color: rgba(34, 197, 94, 0.55);
+  min-height: 45px;
+  border-radius: 0 22px 22px 0;
+  margin-bottom: 3px;
 }
 
 .lcars-username-tag {
   color: $dark-text;
-  background-color: $borg-emerald;
-  font-size: 13px;
-  padding: 2px 8px;
-  border-radius: 8px 0 0 8px;
-  margin-right: 4px;
+  background-color: rgba(22, 163, 74, 0.65);
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 6px 0 0 6px;
+  margin-right: 3px;
 }
 
-// Barras verticales de la barra lateral (Gradación Borg Compacta)
+.lcars-username-tag-right {
+  color: $dark-text;
+  background-color: rgba(22, 163, 74, 0.65);
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 0 6px 6px 0;
+  margin-left: 3px;
+}
+
+// Barras verticales laterales translúcidas
 .lcars-sidebar-bar-orange, .lcars-sidebar-bar-purple, .lcars-sidebar-bar-blue {
-  min-width: 45px;
-  margin-bottom: 6px;
-  min-height: 50px;
+  min-width: 35px;
+  margin-bottom: 4px;
+  min-height: 40px;
 }
 
 .lcars-sidebar-bar-orange {
-  background-color: $borg-green;
+  background-color: rgba(34, 197, 94, 0.45);
 }
 
 .lcars-sidebar-bar-purple {
-  background-color: $borg-emerald;
+  background-color: rgba(22, 163, 74, 0.40);
 }
 
 .lcars-sidebar-bar-blue {
-  background-color: $borg-dark-green;
+  background-color: rgba(20, 83, 45, 0.35);
 }
 
-// Contenedor principal
+// Contenedores principales
 .lcars-main {
-  margin-left: 8px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 // Barra superior horizontal
 .lcars-top-bar {
-  border-bottom: 2px solid $borg-green;
-  padding-bottom: 6px;
-  margin-bottom: 15px;
+  border-bottom: 2px solid rgba(34, 197, 94, 0.60);
+  padding-bottom: 4px;
+  margin-bottom: 10px;
 }
 
 .lcars-hostname-tag {
   color: $borg-green;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 800;
   letter-spacing: 1px;
 }
 
 .lcars-time-tag {
   color: $borg-mint;
-  font-size: 15px;
+  font-size: 14px;
   letter-spacing: 1px;
 }
 
-// Contenedores del cuerpo central
-.lcars-content-container {
-  margin-top: 5px;
-}
-
+// Filas de métricas compactas (Fondo de cristal suave)
 .lcars-metrics-panel {
-  margin-right: 20px;
+  margin-bottom: 5px;
 }
 
-// Filas de métricas (Dimensiones ajustadas a 1080p)
 .metric-box {
-  margin-bottom: 10px;
+  margin-bottom: 6px;
   background-color: $borg-bg-panel;
-  padding: 8px 12px;
-  border-radius: 5px;
-  border-left: 4px solid $borg-green;
+  padding: 6px 10px;
+  border-radius: 4px;
+  border-left: 3px solid rgba(34, 197, 94, 0.70);
 }
 
 .metric-label {
-  font-size: 13px;
+  font-size: 12px;
   color: $borg-mint;
-  min-width: 80px;
+  min-width: 75px;
 }
 
 .metric-sublabel {
-  font-size: 10px;
-  color: $borg-emerald;
+  font-size: 9px;
+  color: $borg-mint;
   font-weight: normal;
+  opacity: 0.8;
   margin-top: 1px;
 }
 
 .metric-progress-container {
-  margin: 0 12px;
+  margin: 0 8px;
 }
 
-// Barra de progreso (GTK-CSS Compacta)
+// Barra de progreso (Fondo oscuro con baja opacidad)
 .metric-progress trough {
-  background-color: #06140d;
+  background-color: rgba(3, 15, 8, 0.40);
   border-radius: 3px;
-  min-height: 10px;
+  min-height: 8px;
 }
 
 .metric-progress progress {
   border-radius: 3px;
-  min-height: 10px;
+  min-height: 8px;
 }
 
 .cpu-bar progress {
-  background-color: $borg-green;
+  background-color: rgba(34, 197, 94, 0.75);
 }
 
 .cputemp-bar progress {
-  background-color: $borg-mint;
+  background-color: rgba(187, 247, 208, 0.70);
 }
 
 .ram-bar progress {
-  background-color: $borg-emerald;
+  background-color: rgba(22, 163, 74, 0.75);
 }
 
 .storage-bar progress {
-  background-color: $borg-green;
+  background-color: rgba(34, 197, 94, 0.75);
 }
 
 .gputemp-bar progress {
-  background-color: $borg-emerald;
+  background-color: rgba(22, 163, 74, 0.75);
 }
 
 .volume-bar progress {
-  background-color: $borg-mint;
+  background-color: rgba(187, 247, 208, 0.75);
 }
 
 .metric-value {
-  font-size: 13px;
+  font-size: 12px;
   color: #ffffff;
-  min-width: 40px;
+  min-width: 35px;
 }
 
 // Controles de volumen
 .metric-volume-controls {
-  margin: 0 12px;
+  margin: 0 8px;
 }
 
 .vol-btn {
-  background-color: $borg-emerald;
-  color: $dark-text;
-  padding: 2px 8px;
+  background-color: rgba(22, 163, 74, 0.55);
+  color: #ffffff;
+  padding: 1px 6px;
   border-radius: 3px;
-  font-size: 11px;
-  margin: 0 3px;
+  font-size: 10px;
+  margin: 0 2px;
   font-weight: 800;
 }
 
-// Panel de botones de acción rápida
-.lcars-actions-panel {
-  min-width: 160px;
+// Parrilla de botones de acción
+.lcars-actions-grid {
+  margin-top: 4px;
 }
 
 .action-btn {
-  padding: 8px 14px;
-  border-radius: 14px;
-  font-size: 13px;
-  color: $dark-text;
-  margin-bottom: 8px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  margin: 3px 4px;
   font-weight: 800;
 }
 
 .btn-orange {
-  background-color: $borg-green;
+  background-color: rgba(34, 197, 94, 0.55);
+  color: #ffffff;
 }
 
 .btn-blue {
-  background-color: $borg-emerald;
+  background-color: rgba(22, 163, 74, 0.50);
+  color: #ffffff;
 }
 
 .btn-yellow {
-  background-color: $borg-mint;
+  background-color: rgba(187, 247, 208, 0.40);
+  color: #022c22;
 }
 
 .btn-purple {
-  background-color: $borg-dark-green;
+  background-color: rgba(20, 83, 45, 0.45);
   color: #ffffff;
 }
 
 .btn-red {
-  background-color: $borg-alert-red;
+  background-color: rgba(220, 38, 38, 0.65);
   color: #ffffff;
 }
